@@ -1,4 +1,4 @@
-const crags = (state = [], action) => {
+const cragsReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_CRAG':
       return [
@@ -9,9 +9,12 @@ const crags = (state = [], action) => {
         }
       ];
 
+    case 'DELETE_CRAG':
+      return state.filter(crag => crag.id !== action.id);
+
     default:
       return state;
   }
 };
 
-export default crags;
+export default cragsReducer;

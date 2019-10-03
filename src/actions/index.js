@@ -5,3 +5,8 @@ export const addCrag = (name) => ({
   id: nextCragId++,
   name
 });
+
+export const deleteCrag = (id) => ({
+  type: 'DELETE_CRAG',
+  id
+});

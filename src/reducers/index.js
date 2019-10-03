@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import crags from './crags';
+import cragsReducer from './cragsReducer';
 
-const cragsApp = combineReducers({
-  crags
+const appReducers = combineReducers({
+  crags: cragsReducer
 });
 
-export default cragsApp;
+export default appReducers;

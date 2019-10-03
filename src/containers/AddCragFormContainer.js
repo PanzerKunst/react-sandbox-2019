@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addCrag } from '../actions';
 
-let AddCrag = ({ dispatch }) => {
+const AddCragForm = ({ dispatch }) => {
   let input;
 
   return (
@@ -28,6 +28,6 @@ let AddCrag = ({ dispatch }) => {
   );
 };
 
-AddCrag = connect()(AddCrag);
+const AddCragFormContainer = connect()(AddCragForm);
 
-export default AddCrag;
+export default AddCragFormContainer;

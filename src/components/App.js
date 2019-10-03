@@ -1,16 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import AddCrag from '../containers/AddCrag';
-import CragList from '../containers/CragList';
+import AddCragFormContainer from '../containers/AddCragFormContainer';
+import CragListContainer from '../containers/CragListContainer';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <AddCrag />
-        <CragList />
+        <AddCragFormContainer />
+        <CragListContainer />
       </header>
     </div>
   );

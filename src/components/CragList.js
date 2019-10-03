@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Crag from './Crag';
+import CragListItem from './CragListItem';
 
 const CragList = ({ crags }) => (
   <ul>
     {crags.map(crag =>
-      <Crag
+      <CragListItem
         key={crag.id}
         {...crag}
       />
@@ -14,10 +14,12 @@ const CragList = ({ crags }) => (
 );
 
 CragList.propTypes = {
-  crags: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired
-  }).isRequired).isRequired
+  crags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired
 };
 
 export default CragList;
