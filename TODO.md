@@ -1,5 +1,6 @@
 x Customize EsLint
-- Integrate Redux
+x Integrate Redux
+- Add RemoveCrag feature
 
 - [Make it a PWA](https://create-react-app.dev/docs/making-a-progressive-web-app)
 - Fetch data from a Node.js & Express server

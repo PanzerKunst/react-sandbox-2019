@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import crags from './crags';
 
 const cragsApp = combineReducers({
-    crags
+  crags
 });
 
 export default cragsApp;

@@ -19,10 +19,11 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "semi": "error",
+      "indent": ["error", 2, {"SwitchCase": 1}],
       "quotes": ["error", "single", { "allowTemplateLiterals": true }],
       "no-trailing-spaces": "error",
-      "no-unused-vars": ["error", {"vars": "all", "args": "after-used"}]
+      "no-unused-vars": ["error", {"vars": "all", "args": "after-used"}],
+      "semi": "error"
     }
   },
   "browserslist": {
