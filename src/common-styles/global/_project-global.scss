@@ -1,0 +1,7 @@
+// For sticky footer (https://css-tricks.com/couple-takes-sticky-footer)
+html,
+body,
+#root,
+#root > * {
+  height: 100%;
+}

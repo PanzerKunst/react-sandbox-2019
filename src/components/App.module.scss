@@ -1,0 +1,23 @@
+@import '../common-styles/global/for-components';
+
+.root {
+  display: flex;
+  flex-direction: column;
+
+  > [role=main] {
+    flex-grow: 1;
+  }
+
+  > nav {
+    background-color: color(text);
+
+    > ul {
+      margin-bottom: 0;
+      display: flex;
+    }
+  
+    a {
+      color: color(background-body);
+    }
+  }
+}

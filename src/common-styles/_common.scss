@@ -1,21 +1,22 @@
 // Pre-libs vendor overrides
 
 // Libs
-@import "~normalize.css/normalize.css";
+@import '~normalize.css/normalize.css';
 
 // Post-libs vendor overrides
 
 // Utils
-@import "global/variables";
-@import "global/mixins";
+@import 'global/variables';
+@import 'global/mixins';
 
 // Global
-@import "global/global";
+@import 'global/global';
+@import 'global/project-global';
 
 // Base UI elements
-@import "ui-elements/buttons";
-@import "ui-elements/forms";
-@import "ui-elements/type";
-@import "ui-elements/links";
-@import "ui-elements/lists";
-@import "ui-elements/headings";
+@import 'ui-elements/buttons';
+@import 'ui-elements/forms';
+@import 'ui-elements/type';
+@import 'ui-elements/links';
+@import 'ui-elements/lists';
+@import 'ui-elements/headings';
