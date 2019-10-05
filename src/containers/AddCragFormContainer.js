@@ -16,7 +16,7 @@ const AddCragForm = ({ dispatch }) => {
       dispatch(addCrag(input.value));
       input.value = '';
     }}>
-      <input ref={node => {
+      <input type="text" ref={node => {
         input = node;
       }} />
       <button type="submit">
