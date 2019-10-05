@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CragListItem from './CragListItem';
 
 const CragList = ({ crags }) => (
-  <ul>
+  <ul className="styleless">
     {crags.map(crag =>
       <CragListItem
         key={crag.id}

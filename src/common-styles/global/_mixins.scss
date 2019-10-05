@@ -1,0 +1,132 @@
+@function color($key) {
+  @if map-has-key($colors, $key) {
+      @return map-get($colors, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $colors.";
+  @return null;
+}
+
+@function font-size($key) {
+  @if map-has-key($font-sizes, $key) {
+      @return map-get($font-sizes, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $font-sizes.";
+  @return null;
+}
+
+@function content-width($key) {
+  @if map-has-key($content-widths, $key) {
+      @return map-get($content-widths, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $content-widths.";
+  @return null;
+}
+
+@mixin medium-screen {
+  @media screen and (min-width: content-width(medium)) {
+      @content;
+  }
+}
+
+@mixin large-screen {
+  @media screen and (min-width: content-width(large)) {
+      @content;
+  }
+}
+
+@mixin xl-screen {
+  @media screen and (min-width: content-width(xl)) {
+      @content;
+  }
+}
+
+@mixin ellipsis($white-space: nowrap) {
+  white-space: $white-space;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@function px-to-em($px) {
+  @return #{$px / font-size(base-px)}em;
+}
+
+@mixin link-color($color) {
+  a,
+  a:visited,
+  a:hover,
+  a:focus {
+      color: $color;
+  }
+}
+
+@mixin styleless-btn {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+@mixin text-shadow($color: color(dark-grey)) {
+  text-shadow: 0 0 0.2em $color;
+}
+
+@mixin no-transition {
+  @include transition(none !important);
+}
+
+@mixin primary-font {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+@mixin secondary-font {
+  font-family: "Oswald", "Arial", sans-serif;
+}
+
+@mixin project-border {
+  border: 1px solid color(well-border);
+  border-radius: $default-border-radius;
+}
+
+@mixin bottom-shadow($color: black, $lighten: 0%) {
+  box-shadow: 0 0.2em 1em -0.1em lighten($color, $lighten);
+}
+
+@mixin tight-letter-spacing {
+  letter-spacing: -0.05em;
+}
+
+@mixin dashed-border-bottom {
+  border-bottom: 1px dashed color(well-border);
+}
+
+@mixin primary-btn {
+  background-color: color(action);
+  color: color(background-body);
+
+  padding: 0.5em 2em;
+  border-radius: 0.1em;
+
+  @include secondary-font;
+  text-transform: uppercase;
+}
+
+@mixin alternate-bg($i: 0) {
+  @if $i == 1 {
+      background-color: color(action);
+  } @else if $i == 2 {
+      background-color: color(secondary-action);
+  } @else if $i == 3 {
+      background-color: color(tertiary-action);
+  } @else {
+      background-color: color(text);
+  }
+
+  color: color(background-body);
+
+  a,
+  a:visited {
+      color: color(background-body);
+  }
+}
