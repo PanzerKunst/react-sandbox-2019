@@ -6,13 +6,15 @@ import { addCrag } from '../reducers/actions';
 const AddCragForm = ({ dispatch, history }) => {
   const [name, setName] = useState('');
 
-  return (
-    <form onSubmit={e => {
-      e.preventDefault();
+  const onSubmit = e => {
+    e.preventDefault();
 
-      dispatch(addCrag(name.trim()));
-      history.push('/');
-    }}>
+    dispatch(addCrag(name.trim()));
+    history.push('/');
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
       <div className="form-group">
         <label htmlFor="crag-name" className="required">Name</label>
         <input type="text" id="crag-name" name="crag-name" value={name} className="form-control" onChange={e => setName(e.target.value)} />
