@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import DeleteCragLink from '../components/DeleteCragLink';
-import { deleteCrag } from '../actions';
+import { deleteCrag } from '../reducers/actions';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onClick: () => dispatch(deleteCrag(ownProps.id))

@@ -1,9 +1,10 @@
-import '../common-styles/_common.scss';
-import styles from './App.module.scss';
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import AddCragFormContainer from '../containers/AddCragFormContainer';
 import CragListContainer from '../containers/CragListContainer';
+
+import '../common-styles/_common.scss';
+import styles from './App.module.scss';
 
 const App = () => (
   <Router>
@@ -12,7 +13,9 @@ const App = () => (
           renders the first one that matches the current URL. */}
       <Switch>
         <Route path="/add-crag">
-          <AddCragFormContainer />
+          <section role="main">
+            <AddCragFormContainer />
+          </section>
         </Route>
 
         <Route path="/">
