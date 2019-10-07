@@ -14,6 +14,9 @@ const routesReducer = (state = [], action) => {
     case 'DELETE_ROUTE':
       return state.filter(route => route.id !== action.id);
 
+    case 'DELETE_ROUTES_FOR_CRAG':
+      return state.filter(route => route.cragId !== action.id);
+
     default:
       return state;
   }

@@ -27,3 +27,8 @@ export const deleteRoute = (id) => ({
   type: 'DELETE_ROUTE',
   id
 });
+
+export const deleteRoutesForCrag = (id) => ({
+  type: 'DELETE_ROUTES_FOR_CRAG',
+  id
+});

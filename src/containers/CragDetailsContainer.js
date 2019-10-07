@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import CragDetails from '../components/CragDetails';
 import { getUrlQueryStrings } from '../services/browser';
-import { deleteCrag } from '../reducers/actions';
+import { deleteCrag, deleteRoutesForCrag } from '../reducers/actions';
 import { withRouter } from 'react-router';
 
 const mapStateToProps = (state) => {
@@ -15,7 +15,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onDeleteClick: id => {
+  onDeleteClick: (id) => {
+    dispatch(deleteRoutesForCrag(id));
     dispatch(deleteCrag(id));
   }
 });

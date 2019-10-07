@@ -11,10 +11,10 @@ x Add Crag Details page
 x Move Delete functionality to Crag Details page
 x Add Routes to Crag Detail page
 x Add Delete Route functionality
-- When deleting a crag, delete its routes first
+x When deleting a crag, delete its routes first
 
-- [Make it a PWA](https://create-react-app.dev/docs/making-a-progressive-web-app)
 - Fetch data from a Node.js & Express server
+- [Make it a PWA](https://create-react-app.dev/docs/making-a-progressive-web-app)
 - [Integrate Flow](https://create-react-app.dev/docs/adding-flow)
 - Integrate Stylelint
 - Fetch data from SQL DB
