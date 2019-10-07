@@ -21,9 +21,21 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "array-bracket-spacing": ["error", "always"],
-      "comma-dangle": ["error", "never"],
-      "comma-spacing": ["error", { "before": false, "after": true }],
+      "array-bracket-spacing": [
+        "error",
+        "never"
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "comma-spacing": [
+        "error",
+        {
+          "before": false,
+          "after": true
+        }
+      ],
       "indent": [
         "error",
         2,
@@ -31,7 +43,10 @@
           "SwitchCase": 1
         }
       ],
-      "object-curly-spacing": ["error", "always"],
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ],
       "quotes": [
         "error",
         "single",

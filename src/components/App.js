@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
 import AddCragFormContainer from '../containers/AddCragFormContainer';
 import CragListContainer from '../containers/CragListContainer';
+import CragDetailsContainer from '../containers/CragDetailsContainer';
 
 import '../common-styles/_common.scss';
 import styles from './App.module.scss';
@@ -17,7 +18,11 @@ const App = () => (
             <AddCragFormContainer />
           </section>
         </Route>
-
+        <Route path="/crags">
+          <section role="main">
+            <CragDetailsContainer />
+          </section>
+        </Route>
         <Route path="/">
           <section role="main" className="centered-contents">
             <img src="/logo192.png" alt="logo" />
@@ -29,10 +34,10 @@ const App = () => (
       <nav>
         <ul className="styleless">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/add-crag">Add Crag</Link>
+            <NavLink to="/add-crag">Add Crag</NavLink>
           </li>
         </ul>
       </nav>
