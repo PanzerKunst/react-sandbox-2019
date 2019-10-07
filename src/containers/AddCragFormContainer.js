@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { addCrag } from '../reducers/actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 const AddCragForm = ({ dispatch, history }) => {
   const [name, setName] = useState('');
