@@ -5,7 +5,9 @@ const cragsReducer = (state = [], action) => {
         ...state,
         {
           id: action.id,
-          name: action.name
+          name: action.name,
+          latitude: action.latitude,
+          longitude: action.longitude
         }
       ];
 

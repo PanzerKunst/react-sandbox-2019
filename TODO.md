@@ -6,6 +6,7 @@ x [Integrate Sass](https://create-react-app.dev/docs/adding-a-sass-stylesheet)
 x [Integrate CSS Modules](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet)
 x [Integrate React Router](https://create-react-app.dev/docs/adding-a-router)
 x Add bottom menu with Add Crag link
+x Add EsLint rule to error on trailing comma on last object/array attribute
 
 - [Make it a PWA](https://create-react-app.dev/docs/making-a-progressive-web-app)
 - Fetch data from a Node.js & Express server
