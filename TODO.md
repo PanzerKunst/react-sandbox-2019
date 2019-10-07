@@ -9,7 +9,8 @@ x Add bottom menu with Add Crag link
 x Add EsLint rule to error on trailing comma on last object/array attribute
 x Add Crag Details page
 x Move Delete functionality to Crag Details page
-- Create Crag Routes page
+x Add Routes to Crag Detail page
+- Add Delete Route functionality
 
 - [Make it a PWA](https://create-react-app.dev/docs/making-a-progressive-web-app)
 - Fetch data from a Node.js & Express server

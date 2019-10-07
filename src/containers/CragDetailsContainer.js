@@ -6,7 +6,12 @@ import { withRouter } from 'react-router';
 
 const mapStateToProps = (state) => {
   const id = Number(getUrlQueryStrings().id);
-  return { crag: state.crags.find(crag => crag.id === id) };
+  const routesAtThisCrag = state.routes.filter(route => route.cragId === id);
+
+  return {
+    crag: state.crags.find(crag => crag.id === id),
+    routes: routesAtThisCrag.sort((a, b) => b.grade.localeCompare(a.grade))
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({

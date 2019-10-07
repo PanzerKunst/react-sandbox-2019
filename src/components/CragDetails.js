@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CragRoutes from './CragRoutes';
+import AddRouteFormContainer from '../containers/AddRouteFormContainer';
 
-const CragDetails = ({ crag: { id, name, latitude, longitude }, onDeleteClick, history }) => {
+const CragDetails = ({ crag: { id, name, latitude, longitude }, routes, onDeleteClick, history }) => {
   const onClick = () => {
     onDeleteClick(id);
     history.push('/');
@@ -18,6 +20,10 @@ const CragDetails = ({ crag: { id, name, latitude, longitude }, onDeleteClick, h
           <label>Longitude:</label><span>{longitude}</span>
         </div>
       </article>
+
+      <CragRoutes routes={routes} />
+      <AddRouteFormContainer cragId={id} />
+
       <div className="centered-contents">
         <button onClick={onClick}>Delete Crag</button>
       </div>
