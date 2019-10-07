@@ -22,3 +22,8 @@ export const addRoute = ({ name, grade, cragId }) => ({
   grade,
   cragId
 });
+
+export const deleteRoute = (id) => ({
+  type: 'DELETE_ROUTE',
+  id
+});

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CragRoutes from './CragRoutes';
+import RouteListContainer from '../containers/RouteListContainer';
 import AddRouteFormContainer from '../containers/AddRouteFormContainer';
 
 const CragDetails = ({ crag: { id, name, latitude, longitude }, routes, onDeleteClick, history }) => {
@@ -21,7 +21,7 @@ const CragDetails = ({ crag: { id, name, latitude, longitude }, routes, onDelete
         </div>
       </article>
 
-      <CragRoutes routes={routes} />
+      <RouteListContainer routes={routes} />
       <AddRouteFormContainer cragId={id} />
 
       <div className="centered-contents">

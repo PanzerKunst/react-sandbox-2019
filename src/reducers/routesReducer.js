@@ -11,6 +11,9 @@ const routesReducer = (state = [], action) => {
         }
       ];
 
+    case 'DELETE_ROUTE':
+      return state.filter(route => route.id !== action.id);
+
     default:
       return state;
   }
