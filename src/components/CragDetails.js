@@ -32,15 +32,15 @@ const CragDetails = ({ crag: { id, name, latitude, longitude }, routes, onDelete
 };
 
 CragDetails.propTypes = {
-  crag: PropTypes.objectOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired
-    }).isRequired
-  ).isRequired,
-  onDeleteClick: PropTypes.func.isRequired
+  crag: PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    latitude: PropTypes.number.isRequired,
+    longitude: PropTypes.number.isRequired
+  })).isRequired,
+  routes: PropTypes.array.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 export default CragDetails;

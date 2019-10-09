@@ -1,8 +1,25 @@
-const cragsReducer = (state = [], action) => {
+const defaultState = {
+  isFetching: false,
+  items: []
+};
+
+const cragsReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case 'REQUEST_CRAGS':
+      return Object.assign({}, state, {
+        isFetching: true
+      });
+
+    case 'RECEIVE_CRAGS':
+      return Object.assign({}, state, {
+        isFetching: false,
+        items: action.items,
+        lastUpdated: action.receivedAt
+      });
+
     case 'ADD_CRAG':
-      return [
-        ...state,
+      const itemsWithAddedCrag = [
+        ...state.items,
         {
           id: action.id,
           name: action.name,
@@ -11,8 +28,17 @@ const cragsReducer = (state = [], action) => {
         }
       ];
 
+      return Object.assign({}, state, {
+        items: itemsWithAddedCrag
+      });
+
     case 'DELETE_CRAG':
-      return state.filter(crag => crag.id !== action.id);
+      const itemsWithoutDeletedCrag = state.items.filter(crag => crag.id !== action.id);
+
+      return Object.assign({}, state, {
+        items: itemsWithoutDeletedCrag,
+        lastUpdated: action.deletedAt
+      });
 
     default:
       return state;

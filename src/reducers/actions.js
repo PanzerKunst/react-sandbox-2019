@@ -1,4 +1,36 @@
+import fetch from 'cross-fetch';
+import { isEmpty } from 'lodash-es';
+
 let nextCragId = 0;
+
+export const requestCrags = () => ({
+  type: 'REQUEST_CRAGS'
+});
+
+export const receiveCrags = (json) => ({
+  type: 'RECEIVE_CRAGS',
+  items: json,
+  receivedAt: Date.now()
+});
+
+const _fetchCrags = () => async dispatch => {
+  dispatch(requestCrags());
+
+  const response = await fetch('http://localhost:3001/crags');
+  const json = await response.json();
+
+  return dispatch(receiveCrags(json));
+};
+
+const _shouldFetchCrags = (state) => {
+  return !state.crags.isFetching && isEmpty(state.crags.items);
+};
+
+export const fetchCragsIfNeeded = () => (dispatch, getState) => {
+  if (_shouldFetchCrags(getState())) {
+    return dispatch(_fetchCrags());
+  }
+};
 
 export const addCrag = ({ name, latitude, longitude }) => ({
   type: 'ADD_CRAG',
@@ -8,10 +40,15 @@ export const addCrag = ({ name, latitude, longitude }) => ({
   longitude
 });
 
-export const deleteCrag = (id) => ({
-  type: 'DELETE_CRAG',
-  id
-});
+export const deleteCrag = (id) => {
+  fetch(`http://localhost:3001/crags/${id}`, { method: 'DELETE' });
+
+  return {
+    type: 'DELETE_CRAG',
+    id,
+    deletedAt: Date.now()
+  };
+};
 
 let nextRouteId = 0;
 

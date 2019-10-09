@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
   const routesAtThisCrag = state.routes.filter(route => route.cragId === id);
 
   return {
-    crag: state.crags.find(crag => crag.id === id),
+    crag: state.crags.items.find(crag => crag.id === id),
     routes: routesAtThisCrag.sort((a, b) => b.grade.localeCompare(a.grade))
   };
 };
