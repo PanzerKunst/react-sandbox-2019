@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch';
 import { isEmpty } from 'lodash-es';
 
-const _shouldFetchCrags = (state) => {
+const _shouldFetchCrags = state => {
   return !state.crags.error && !state.crags.isFetching && isEmpty(state.crags.items);
 };
 
@@ -43,7 +43,7 @@ export function addCrag(crag) {
 }
 
 export function deleteCrag(id) {
-  return (dispatch) => {
+  return dispatch => {
     fetch(`http://localhost:3001/crags/${id}`, { method: 'DELETE' })
       .then(() => dispatch({
         type: 'DELETE_CRAG_OK',
@@ -66,12 +66,12 @@ export const addRoute = ({ name, grade, cragId }) => ({
   cragId
 });
 
-export const deleteRoute = (id) => ({
+export const deleteRoute = id => ({
   type: 'DELETE_ROUTE',
   id
 });
 
-export const deleteRoutesForCrag = (id) => ({
+export const deleteRoutesForCrag = id => ({
   type: 'DELETE_ROUTES_FOR_CRAG',
   id
 });

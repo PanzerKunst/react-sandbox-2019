@@ -43,7 +43,7 @@ CragList.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   crags: state.crags
 });
 

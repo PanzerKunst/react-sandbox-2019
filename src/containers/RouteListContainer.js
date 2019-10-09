@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import RouteList from '../components/RouteList';
 import { deleteRoute } from '../reducers/actions';
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   onDeleteClick: id => {
     dispatch(deleteRoute(id));
   }

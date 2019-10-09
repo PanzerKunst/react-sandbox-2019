@@ -4,7 +4,7 @@ import { getUrlQueryStrings } from '../services/browser';
 import { deleteCrag, deleteRoutesForCrag } from '../reducers/actions';
 import { withRouter } from 'react-router';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const id = Number(getUrlQueryStrings().id);
   const routesAtThisCrag = state.routes.filter(route => route.cragId === id);
 
@@ -14,8 +14,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onDeleteClick: (id) => {
+const mapDispatchToProps = dispatch => ({
+  onDeleteClick: id => {
     dispatch(deleteRoutesForCrag(id));
     dispatch(deleteCrag(id));
   }
