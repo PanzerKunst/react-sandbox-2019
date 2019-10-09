@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchCragsIfNeeded } from '../reducers/actions';
 import CragListItem from '../components/CragListItem';
 
-const CragList = ({ crags: { isFetching, items, lastUpdated }, dispatch }) => {
+const CragList = ({ crags: { isFetching, items, lastUpdated, isError }, dispatch }) => {
   dispatch(fetchCragsIfNeeded());
 
   return (
@@ -13,8 +13,8 @@ const CragList = ({ crags: { isFetching, items, lastUpdated }, dispatch }) => {
         <span>Last updated at {new Date(lastUpdated).toLocaleTimeString()}.</span>
       )}
       {isFetching && items.length === 0 && <h2>Loading...</h2>}
-      {!isFetching && items.length === 0 && <h2>Empty.</h2>}
-      {items.length > 0 && (
+      {!isError && !isFetching && items.length === 0 && <h2>Empty.</h2>}
+      {!isError && items.length > 0 && (
         <ul className="styleless">
           {items.map(crag =>
             <CragListItem
@@ -24,6 +24,7 @@ const CragList = ({ crags: { isFetching, items, lastUpdated }, dispatch }) => {
           )}
         </ul>
       )}
+      {isError && <p className="error">Error fetching crags list :'(</p>}
     </div>
   );
 };
@@ -34,7 +35,8 @@ CragList.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired
     })).isRequired,
-    lastUpdated: PropTypes.object
+    lastUpdated: PropTypes.object,
+    isError: PropTypes.bool.isRequired
   })).isRequired,
   dispatch: PropTypes.func.isRequired
 };

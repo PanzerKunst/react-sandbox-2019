@@ -7,23 +7,31 @@ export const requestCrags = () => ({
   type: 'REQUEST_CRAGS'
 });
 
-export const receiveCrags = (json) => ({
-  type: 'RECEIVE_CRAGS',
+const _receiveCragsOk = (json) => ({
+  type: 'RECEIVE_CRAGS_OK',
   items: json,
   receivedAt: Date.now()
+});
+
+const _receiveCragsError = () => ({
+  type: 'RECEIVE_CRAGS_ERROR'
 });
 
 const _fetchCrags = () => async dispatch => {
   dispatch(requestCrags());
 
-  const response = await fetch('http://localhost:3001/crags');
-  const json = await response.json();
+  try {
+    const response = await fetch('http://localhost:3001/crags');
+    const json = await response.json();
 
-  return dispatch(receiveCrags(json));
+    return dispatch(_receiveCragsOk(json));
+  } catch (ex) {
+    return dispatch(_receiveCragsError());
+  }
 };
 
 const _shouldFetchCrags = (state) => {
-  return !state.crags.isFetching && isEmpty(state.crags.items);
+  return !state.crags.isError && !state.crags.isFetching && isEmpty(state.crags.items);
 };
 
 export const fetchCragsIfNeeded = () => (dispatch, getState) => {
