@@ -16,6 +16,7 @@ x Fetch Crag data from a Node.js & Express backend
 x Deleting a crag updates backend
 x Handle error on fetching crags
 x Handle error on deleting crag
+x Adding a crag updates backend
 - Fetch routes from backend
 
 - Fetch Routes data from backend

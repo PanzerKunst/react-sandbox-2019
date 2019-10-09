@@ -13,8 +13,8 @@ const CragList = ({ crags: { isFetching, items, lastUpdated, error }, dispatch }
         <span>Last updated at {new Date(lastUpdated).toLocaleTimeString()}.</span>
       )}
       {isFetching && items.length === 0 && <h2>Loading...</h2>}
-      {!error && !isFetching && items.length === 0 && <h2>Empty.</h2>}
-      {!error && items.length > 0 && (
+      {error !== 'RECEIVE' && !isFetching && items.length === 0 && <h2>Empty.</h2>}
+      {error !== 'RECEIVE' && items.length > 0 && (
         <ul className="styleless">
           {items.map(crag =>
             <CragListItem
@@ -26,6 +26,7 @@ const CragList = ({ crags: { isFetching, items, lastUpdated, error }, dispatch }
       )}
       {error === 'RECEIVE' && <p className="error">Error fetching crag list :'(</p>}
       {error === 'DELETE' && <p className="error">Error deleting crag :'(</p>}
+      {error === 'ADD' && <p className="error">Error adding crag :'(</p>}
     </div>
   );
 };

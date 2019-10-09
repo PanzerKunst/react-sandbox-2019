@@ -24,19 +24,12 @@ const cragsReducer = (state = defaultState, action) => {
         error: 'RECEIVE'
       });
 
-    case 'ADD_CRAG':
-      const itemsWithAddedCrag = [
-        ...state.items,
-        {
-          id: action.id,
-          name: action.name,
-          latitude: action.latitude,
-          longitude: action.longitude
-        }
-      ];
+    case 'ADD_CRAG_OK':
+      return defaultState;
 
+    case 'ADD_CRAG_ERROR':
       return Object.assign({}, state, {
-        items: itemsWithAddedCrag
+        error: 'ADD'
       });
 
     case 'DELETE_CRAG_OK':

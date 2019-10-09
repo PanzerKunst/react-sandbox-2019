@@ -1,8 +1,6 @@
 import fetch from 'cross-fetch';
 import { isEmpty } from 'lodash-es';
 
-let nextCragId = 0;
-
 const _shouldFetchCrags = (state) => {
   return !state.crags.error && !state.crags.isFetching && isEmpty(state.crags.items);
 };
@@ -28,13 +26,21 @@ export function fetchCragsIfNeeded() {
   };
 }
 
-export const addCrag = ({ name, latitude, longitude }) => ({
-  type: 'ADD_CRAG',
-  id: nextCragId++,
-  name,
-  latitude,
-  longitude
-});
+export function addCrag(crag) {
+  return dispatch => {
+    fetch(`http://localhost:3001/crags`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(crag)
+    })
+      .then(() => dispatch({
+        type: 'ADD_CRAG_OK'
+      }))
+      .catch(() => dispatch({
+        type: 'ADD_CRAG_ERROR'
+      }));
+  };
+}
 
 export function deleteCrag(id) {
   return (dispatch) => {
