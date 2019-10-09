@@ -1,7 +1,6 @@
 const defaultState = {
   isFetching: false,
-  items: [],
-  isError: false
+  items: []
 };
 
 const cragsReducer = (state = defaultState, action) => {
@@ -9,7 +8,7 @@ const cragsReducer = (state = defaultState, action) => {
     case 'REQUEST_CRAGS':
       return Object.assign({}, state, {
         isFetching: true,
-        isError: false
+        error: undefined
       });
 
     case 'RECEIVE_CRAGS_OK':
@@ -22,7 +21,7 @@ const cragsReducer = (state = defaultState, action) => {
     case 'RECEIVE_CRAGS_ERROR':
       return Object.assign({}, state, {
         isFetching: false,
-        isError: true
+        error: 'RECEIVE'
       });
 
     case 'ADD_CRAG':
@@ -40,12 +39,18 @@ const cragsReducer = (state = defaultState, action) => {
         items: itemsWithAddedCrag
       });
 
-    case 'DELETE_CRAG':
+    case 'DELETE_CRAG_OK':
       const itemsWithoutDeletedCrag = state.items.filter(crag => crag.id !== action.id);
 
       return Object.assign({}, state, {
         items: itemsWithoutDeletedCrag,
-        lastUpdated: action.deletedAt
+        lastUpdated: action.deletedAt,
+        error: undefined
+      });
+
+    case 'DELETE_CRAG_ERROR':
+      return Object.assign({}, state, {
+        error: 'DELETE'
       });
 
     default:

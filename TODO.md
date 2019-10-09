@@ -15,7 +15,8 @@ x When deleting a crag, delete its routes first
 x Fetch Crag data from a Node.js & Express backend
 x Deleting a crag updates backend
 x Handle error on fetching crags
-- Handle error on deleting crag
+x Handle error on deleting crag
+- Fetch routes from backend
 
 - Fetch Routes data from backend
 - [Make it a PWA](https://create-react-app.dev/docs/making-a-progressive-web-app)

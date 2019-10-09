@@ -3,42 +3,30 @@ import { isEmpty } from 'lodash-es';
 
 let nextCragId = 0;
 
-export const requestCrags = () => ({
-  type: 'REQUEST_CRAGS'
-});
-
-const _receiveCragsOk = (json) => ({
-  type: 'RECEIVE_CRAGS_OK',
-  items: json,
-  receivedAt: Date.now()
-});
-
-const _receiveCragsError = () => ({
-  type: 'RECEIVE_CRAGS_ERROR'
-});
-
-const _fetchCrags = () => async dispatch => {
-  dispatch(requestCrags());
-
-  try {
-    const response = await fetch('http://localhost:3001/crags');
-    const json = await response.json();
-
-    return dispatch(_receiveCragsOk(json));
-  } catch (ex) {
-    return dispatch(_receiveCragsError());
-  }
-};
-
 const _shouldFetchCrags = (state) => {
-  return !state.crags.isError && !state.crags.isFetching && isEmpty(state.crags.items);
+  return !state.crags.error && !state.crags.isFetching && isEmpty(state.crags.items);
 };
 
-export const fetchCragsIfNeeded = () => (dispatch, getState) => {
-  if (_shouldFetchCrags(getState())) {
-    return dispatch(_fetchCrags());
-  }
-};
+export function fetchCragsIfNeeded() {
+  return (dispatch, getState) => {
+    if (_shouldFetchCrags(getState())) {
+      dispatch({
+        type: 'REQUEST_CRAGS'
+      });
+
+      fetch('http://localhost:3001/crags')
+        .then(response => response.json())
+        .then(json => dispatch({
+          type: 'RECEIVE_CRAGS_OK',
+          items: json,
+          receivedAt: Date.now()
+        }))
+        .catch(() => dispatch({
+          type: 'RECEIVE_CRAGS_ERROR'
+        }));
+    }
+  };
+}
 
 export const addCrag = ({ name, latitude, longitude }) => ({
   type: 'ADD_CRAG',
@@ -48,15 +36,19 @@ export const addCrag = ({ name, latitude, longitude }) => ({
   longitude
 });
 
-export const deleteCrag = (id) => {
-  fetch(`http://localhost:3001/crags/${id}`, { method: 'DELETE' });
-
-  return {
-    type: 'DELETE_CRAG',
-    id,
-    deletedAt: Date.now()
+export function deleteCrag(id) {
+  return (dispatch) => {
+    fetch(`http://localhost:3001/crags/${id}`, { method: 'DELETE' })
+      .then(() => dispatch({
+        type: 'DELETE_CRAG_OK',
+        id,
+        deletedAt: Date.now()
+      }))
+      .catch(() => dispatch({
+        type: 'DELETE_CRAG_ERROR'
+      }));
   };
-};
+}
 
 let nextRouteId = 0;
 
