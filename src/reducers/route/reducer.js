@@ -1,4 +1,5 @@
 import { REQUEST_ROUTES, RECEIVE_ROUTES_OK, RECEIVE_ROUTES_ERROR, ADD_ROUTE_OK, ADD_ROUTE_ERROR, DELETE_ROUTE_OK, DELETE_ROUTE_ERROR, DELETE_ROUTES_FOR_CRAG } from './actions';
+import { sortBy } from 'lodash-es';
 
 const defaultState = {
   isFetching: false,
@@ -16,7 +17,7 @@ const routesReducer = (state = defaultState, action) => {
     case RECEIVE_ROUTES_OK:
       return Object.assign({}, state, {
         isFetching: false,
-        items: action.items,
+        items: sortBy(action.items, 'grade').reverse(),
         lastUpdated: action.receivedAt
       });
 

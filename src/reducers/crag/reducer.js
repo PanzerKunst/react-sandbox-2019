@@ -1,4 +1,5 @@
 import { REQUEST_CRAGS, RECEIVE_CRAGS_OK, RECEIVE_CRAGS_ERROR, ADD_CRAG_OK, ADD_CRAG_ERROR, DELETE_CRAG_OK, DELETE_CRAG_ERROR } from './actions';
+import { sortBy } from 'lodash-es';
 
 const defaultState = {
   isFetching: false,
@@ -16,7 +17,7 @@ const cragsReducer = (state = defaultState, action) => {
     case RECEIVE_CRAGS_OK:
       return Object.assign({}, state, {
         isFetching: false,
-        items: action.items,
+        items: sortBy(action.items, 'name'),
         lastUpdated: action.receivedAt
       });
 
