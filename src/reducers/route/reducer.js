@@ -1,54 +1,53 @@
+import { REQUEST_ROUTES, RECEIVE_ROUTES_OK, RECEIVE_ROUTES_ERROR, ADD_ROUTE_OK, ADD_ROUTE_ERROR, DELETE_ROUTE_OK, DELETE_ROUTE_ERROR, DELETE_ROUTES_FOR_CRAG } from './actions';
+
 const defaultState = {
   isFetching: false,
   items: []
 };
 
-const cragsReducer = (state = defaultState, action) => {
+const routesReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case 'REQUEST_CRAGS':
+    case REQUEST_ROUTES:
       return Object.assign({}, state, {
         isFetching: true,
         error: undefined
       });
 
-    case 'RECEIVE_CRAGS_OK':
+    case RECEIVE_ROUTES_OK:
       return Object.assign({}, state, {
         isFetching: false,
         items: action.items,
         lastUpdated: action.receivedAt
       });
 
-    case 'RECEIVE_CRAGS_ERROR':
+    case RECEIVE_ROUTES_ERROR:
       return Object.assign({}, state, {
         isFetching: false,
         error: 'RECEIVE'
       });
 
-    case 'ADD_CRAG_OK':
+    case ADD_ROUTE_OK:
       return defaultState;
 
-    case 'ADD_CRAG_ERROR':
+    case ADD_ROUTE_ERROR:
       return Object.assign({}, state, {
         error: 'ADD'
       });
 
-    case 'DELETE_CRAG_OK':
-      const itemsWithoutDeletedCrag = state.items.filter(crag => crag.id !== action.id);
+    case DELETE_ROUTE_OK:
+      return defaultState;
 
-      return Object.assign({}, state, {
-        items: itemsWithoutDeletedCrag,
-        lastUpdated: action.deletedAt,
-        error: undefined
-      });
-
-    case 'DELETE_CRAG_ERROR':
+    case DELETE_ROUTE_ERROR:
       return Object.assign({}, state, {
         error: 'DELETE'
       });
+
+    case DELETE_ROUTES_FOR_CRAG: // TODO
+      return state.items.filter(route => route.cragId !== action.id);
 
     default:
       return state;
   }
 };
 
-export default cragsReducer;
+export default routesReducer;

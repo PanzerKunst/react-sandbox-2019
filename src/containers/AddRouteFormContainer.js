@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { addRoute } from '../reducers/actions';
+import { addRoute } from '../reducers/route/actions';
 import { connect } from 'react-redux';
 
 const AddRouteForm = ({ cragId, dispatch }) => {

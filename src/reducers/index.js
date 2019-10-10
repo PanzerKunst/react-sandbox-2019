@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import cragsReducer from './cragsReducer';
-import routesReducer from './routesReducer';
+import cragsReducer from './crag/reducer';
+import routesReducer from './route/reducer';
 
 const rootReducer = combineReducers({
   crags: cragsReducer, // The state attribute will be named after the key - `crags` here

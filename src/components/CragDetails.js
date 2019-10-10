@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RouteListContainer from '../containers/RouteListContainer';
 import AddRouteFormContainer from '../containers/AddRouteFormContainer';
 
-const CragDetails = ({ crag: { id, name, latitude, longitude }, routes, onDeleteClick, history }) => {
+const CragDetails = ({ crag: { id, name, latitude, longitude }, onDeleteClick, history }) => {
   const onClick = () => {
     onDeleteClick(id);
     history.push('/');
@@ -21,7 +21,7 @@ const CragDetails = ({ crag: { id, name, latitude, longitude }, routes, onDelete
         </div>
       </article>
 
-      <RouteListContainer routes={routes} />
+      <RouteListContainer cragId={id} />
       <AddRouteFormContainer cragId={id} />
 
       <div className="centered-contents">
@@ -38,7 +38,6 @@ CragDetails.propTypes = {
     latitude: PropTypes.number.isRequired,
     longitude: PropTypes.number.isRequired
   })).isRequired,
-  routes: PropTypes.array.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 };

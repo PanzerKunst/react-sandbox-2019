@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCragsIfNeeded } from '../reducers/actions';
+import { fetchCragsIfNeeded } from '../reducers/crag/actions';
 import CragListItem from '../components/CragListItem';
 
 const CragList = ({ crags: { isFetching, items, lastUpdated, error }, dispatch }) => {
@@ -12,8 +12,8 @@ const CragList = ({ crags: { isFetching, items, lastUpdated, error }, dispatch }
       {lastUpdated && (
         <span>Last updated at {new Date(lastUpdated).toLocaleTimeString()}.</span>
       )}
-      {isFetching && items.length === 0 && <h2>Loading...</h2>}
-      {error !== 'RECEIVE' && !isFetching && items.length === 0 && <h2>Empty.</h2>}
+      {isFetching && items.length === 0 && <h2>Loading crags...</h2>}
+      {error !== 'RECEIVE' && !isFetching && items.length === 0 && <h2>No crags</h2>}
       {error !== 'RECEIVE' && items.length > 0 && (
         <ul className="styleless">
           {items.map(crag =>

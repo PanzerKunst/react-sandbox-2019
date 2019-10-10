@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { addCrag } from '../reducers/actions';
+import { addCrag } from '../reducers/crag/actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
