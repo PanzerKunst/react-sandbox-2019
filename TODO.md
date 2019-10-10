@@ -18,11 +18,11 @@ x Handle error on fetching crags
 x Handle error on deleting crag
 x Adding a crag updates backend
 x Fetch Routes data from backend
-- Handle error on fetching routes
+x Handle error on fetching routes
+x Deleting a route updates backend
+x Handle error on deleting a route
 - Adding a route updates backend
 - Handle error on adding a route
-- Deleting a route updates backend
-- Handle error on deleting a route
 
 - [Make it a PWA](https://create-react-app.dev/docs/making-a-progressive-web-app)
 - [Integrate Flow](https://create-react-app.dev/docs/adding-flow)

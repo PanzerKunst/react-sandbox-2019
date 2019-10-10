@@ -28,6 +28,7 @@ const RouteList = ({ cragId, routes: { isFetching, items, error }, dispatch }) =
         </tbody>
       </table>)}
       {error === 'RECEIVE' && <p className="error">Error fetching route list :'(</p>}
+      {error === 'DELETE' && <p className="error">Error deleting route :'(</p>}
     </div>
   );
 };
