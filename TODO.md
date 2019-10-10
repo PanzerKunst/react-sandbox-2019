@@ -22,6 +22,7 @@ x Handle error on fetching routes
 x Deleting a route updates backend
 x Handle error on deleting a route
 x Display Crags and Routes in correct order
+x Loading Crag Detail page directly doesn't break the app
 - Adding a route updates backend
 - Handle error on adding a route
 
