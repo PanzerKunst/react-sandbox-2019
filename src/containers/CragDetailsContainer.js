@@ -9,10 +9,13 @@ import { deleteRoutesForCrag } from '../reducers/route/actions';
 import RouteListContainer from '../containers/RouteListContainer';
 import AddRouteFormContainer from '../containers/AddRouteFormContainer';
 
-const CragDetails = ({ crag, dispatch, history }) => {
+const CragDetails = ({ crag, cragsError, dispatch, history }) => {
   dispatch(fetchCragsIfNeeded());
 
-  if (!crag) return null;
+  if (!crag) {
+    if (cragsError === 'RECEIVE') return (<p className="error">Error fetching crag list :'(</p>);
+    return null;
+  }
 
   const { id, name, latitude, longitude } = crag;
 
@@ -52,6 +55,7 @@ CragDetails.propTypes = {
     latitude: PropTypes.number.isRequired,
     longitude: PropTypes.number.isRequired
   })),
+  cragsError: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 };
@@ -60,7 +64,8 @@ const mapStateToProps = state => {
   const id = Number(getUrlQueryStrings().id);
 
   return {
-    crag: state.crags.items.find(crag => crag.id === id)
+    crag: state.crags.items.find(crag => crag.id === id),
+    cragsError: state.crags.error
   };
 };
 

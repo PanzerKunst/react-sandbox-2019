@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { addRoute } from '../reducers/route/actions';
 import { connect } from 'react-redux';
 
-const AddRouteForm = ({ cragId, dispatch }) => {
+const AddRouteForm = ({ cragId, error, dispatch }) => {
   const [name, setName] = useState('');
   const [grade, setGrade] = useState('');
 
@@ -31,15 +31,23 @@ const AddRouteForm = ({ cragId, dispatch }) => {
         <input type="text" id="grade" name="grade" value={grade} className="form-control" required onChange={e => setGrade(e.target.value.trim())} />
       </div>
       <button type="submit">Add Route</button>
+      {error === 'ADD' && <p className="error">Error adding route :'(</p>}
     </form>
   );
 };
 
 AddRouteForm.propTypes = {
   cragId: PropTypes.number.isRequired,
+  error: PropTypes.string,
   dispatch: PropTypes.func.isRequired
 };
 
-const AddRouteFormContainer = connect()(AddRouteForm);
+const mapStateToProps = state => ({
+  error: state.routes.error
+});
+
+const AddRouteFormContainer = connect(
+  mapStateToProps
+)(AddRouteForm);
 
 export default AddRouteFormContainer;
