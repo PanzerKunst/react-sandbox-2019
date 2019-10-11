@@ -8,7 +8,7 @@ const RouteList = ({ cragId, routes: { isFetching, items, error }, dispatch }) =
 
   return (
     <div>
-      {isFetching && items.length === 0 && <h2>Loading routes...</h2>}
+      {isFetching && <h2>Loading routes...</h2>}
       {error !== 'RECEIVE' && !isFetching && (<table>
         <thead>
           <tr>

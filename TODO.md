@@ -25,6 +25,7 @@ x Display Crags and Routes in correct order
 x Loading Crag Detail page directly doesn't break the app
 x Adding a route updates backend
 x Handle error on adding a route
+x Deleting all routes of a crag on the backend
 
 - [Make it a PWA](https://create-react-app.dev/docs/making-a-progressive-web-app)
 - [Integrate Flow](https://create-react-app.dev/docs/adding-flow)

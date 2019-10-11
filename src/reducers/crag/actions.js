@@ -55,9 +55,7 @@ export function deleteCrag(id) {
   return dispatch => {
     fetch(`${backendRootUrl}/crags/${id}`, { method: 'DELETE' })
       .then(() => dispatch({
-        type: DELETE_CRAG_OK,
-        id,
-        deletedAt: Date.now()
+        type: DELETE_CRAG_OK
       }))
       .catch(() => dispatch({
         type: DELETE_CRAG_ERROR

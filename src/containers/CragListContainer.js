@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchCragsIfNeeded } from '../reducers/crag/actions';
 import CragListItem from '../components/CragListItem';
 
-const CragList = ({ crags: { isFetching, items, lastUpdated, error }, dispatch }) => {
+const CragList = ({ crags: { isFetching, items, lastUpdated, error }, routesError, dispatch }) => {
   dispatch(fetchCragsIfNeeded());
 
   return (
@@ -12,7 +12,7 @@ const CragList = ({ crags: { isFetching, items, lastUpdated, error }, dispatch }
       {lastUpdated && (
         <span>Last updated at {new Date(lastUpdated).toLocaleTimeString()}.</span>
       )}
-      {isFetching && items.length === 0 && <h2>Loading crags...</h2>}
+      {isFetching && <h2>Loading crags...</h2>}
       {error !== 'RECEIVE' && !isFetching && items.length === 0 && <h2>No crags</h2>}
       {error !== 'RECEIVE' && items.length > 0 && (
         <ul className="styleless">
@@ -27,6 +27,7 @@ const CragList = ({ crags: { isFetching, items, lastUpdated, error }, dispatch }
       {error === 'RECEIVE' && <p className="error">Error fetching crag list :'(</p>}
       {error === 'DELETE' && <p className="error">Error deleting crag :'(</p>}
       {error === 'ADD' && <p className="error">Error adding crag :'(</p>}
+      {routesError === 'DELETE_FOR_CRAG' && <p className="error">Error deleting crag's routes :'(</p>}
     </div>
   );
 };
@@ -40,11 +41,13 @@ CragList.propTypes = {
     lastUpdated: PropTypes.object,
     error: PropTypes.string
   })).isRequired,
+  routesError: PropTypes.string,
   dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  crags: state.crags
+  crags: state.crags,
+  routesError: state.routes.error
 });
 
 const CragListContainer = connect(

@@ -1,4 +1,4 @@
-import { REQUEST_ROUTES, RECEIVE_ROUTES_OK, RECEIVE_ROUTES_ERROR, ADD_ROUTE_OK, ADD_ROUTE_ERROR, DELETE_ROUTE_OK, DELETE_ROUTE_ERROR, DELETE_ROUTES_FOR_CRAG } from './actions';
+import { REQUEST_ROUTES, RECEIVE_ROUTES_OK, RECEIVE_ROUTES_ERROR, ADD_ROUTE_OK, ADD_ROUTE_ERROR, DELETE_ROUTE_OK, DELETE_ROUTE_ERROR, DELETE_ROUTES_FOR_CRAG_OK, DELETE_ROUTES_FOR_CRAG_ERROR } from './actions';
 import { sortBy } from 'lodash-es';
 
 const defaultState = {
@@ -43,8 +43,13 @@ const routesReducer = (state = defaultState, action) => {
         error: 'DELETE'
       });
 
-    case DELETE_ROUTES_FOR_CRAG: // TODO
-      return state.items.filter(route => route.cragId !== action.id);
+    case DELETE_ROUTES_FOR_CRAG_OK:
+      return defaultState;
+
+    case DELETE_ROUTES_FOR_CRAG_ERROR:
+      return Object.assign({}, state, {
+        error: 'DELETE_FOR_CRAG'
+      });
 
     default:
       return state;

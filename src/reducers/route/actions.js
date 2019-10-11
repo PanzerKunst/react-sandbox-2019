@@ -9,7 +9,8 @@ export const ADD_ROUTE_OK = 'ADD_ROUTE_OK';
 export const ADD_ROUTE_ERROR = 'ADD_ROUTE_ERROR';
 export const DELETE_ROUTE_OK = 'DELETE_ROUTE_OK';
 export const DELETE_ROUTE_ERROR = 'DELETE_ROUTE_ERROR';
-export const DELETE_ROUTES_FOR_CRAG = 'DELETE_ROUTES_FOR_CRAG';
+export const DELETE_ROUTES_FOR_CRAG_OK = 'DELETE_ROUTES_FOR_CRAG_OK';
+export const DELETE_ROUTES_FOR_CRAG_ERROR = 'DELETE_ROUTES_FOR_CRAG_ERROR';
 
 const _shouldFetchRoutes = state => {
   return !state.routes.error && !state.routes.isFetching && isEmpty(state.routes.items);
@@ -56,9 +57,7 @@ export function deleteRoute(id) {
   return dispatch => {
     fetch(`${backendRootUrl}/routes/${id}`, { method: 'DELETE' })
       .then(() => dispatch({
-        type: DELETE_ROUTE_OK,
-        id,
-        deletedAt: Date.now()
+        type: DELETE_ROUTE_OK
       }))
       .catch(() => dispatch({
         type: DELETE_ROUTE_ERROR
@@ -66,8 +65,14 @@ export function deleteRoute(id) {
   };
 }
 
-// TODO
-export const deleteRoutesForCrag = id => ({
-  type: DELETE_ROUTES_FOR_CRAG,
-  id
-});
+export function deleteRoutesForCrag(id) {
+  return dispatch => {
+    fetch(`${backendRootUrl}/routes?cragId=${id}`, { method: 'DELETE' })
+      .then(() => dispatch({
+        type: DELETE_ROUTES_FOR_CRAG_OK
+      }))
+      .catch(() => dispatch({
+        type: DELETE_ROUTES_FOR_CRAG_ERROR
+      }));
+  };
+}
